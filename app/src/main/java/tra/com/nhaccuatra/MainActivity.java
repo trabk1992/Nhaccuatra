@@ -1,31 +1,25 @@
 package tra.com.nhaccuatra;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.TabActivity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TabHost;
 
 import tra.com.nhaccuatra.main.album.AlbumActivity;
 import tra.com.nhaccuatra.main.artists.ArtistActivity;
 import tra.com.nhaccuatra.main.playlist.PlayListActivity;
-import tra.com.nhaccuatra.main.songs.SongsActivity;
+import tra.com.nhaccuatra.main.songs.view.SongsActivity;
 
 public class MainActivity extends TabActivity {
 
     private final static int MY_REQUEST_PERMISSION  = 1;
     private TabHost tabHost;
+
     //trabkpro
     //change 
     @Override
