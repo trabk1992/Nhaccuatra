@@ -11,7 +11,7 @@
     tools:context="tra.com.nhaccuatra.MainActivity">
 
    <TabHost
-       android:id="@+id/tabhost"
+       android:id="@android:id/tabhost"
        android:layout_width="match_parent"
        android:layout_height="match_parent">
        <LinearLayout
@@ -26,21 +26,7 @@
                android:id="@android:id/tabcontent"
                android:layout_width="match_parent"
                android:layout_height="match_parent">
-               <include
-                   android:id="@+id/play_list_layout"
-                   layout="@layout/layout_play_list"></include>
 
-               <include
-                   android:id="@+id/artists_layout"
-                   layout="@layout/layout_artists"></include>
-
-               <include
-                   android:id="@+id/songs_layout"
-                   layout="@layout/layout_songs" ></include>
-
-               <include
-                   android:id="@+id/album_layout"
-                   layout="@layout/layout_album"></include>
            </FrameLayout>
 
        </LinearLayout>

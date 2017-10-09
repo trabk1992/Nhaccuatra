@@ -4,11 +4,11 @@ package tra.com.nhaccuatra.main.songs.model;
  * Created by Admin on 10/4/2017.
  */
 
-public class songs {
+public class Songs {
     private String songsName;
     private String singerName;
 
-    public songs(String songsName, String singerName) {
+    public Songs(String songsName, String singerName) {
         this.songsName = songsName;
         this.singerName = singerName;
     }
