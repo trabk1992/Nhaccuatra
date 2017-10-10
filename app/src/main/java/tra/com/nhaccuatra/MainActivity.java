@@ -10,7 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.widget.TabHost;
 
-import tra.com.nhaccuatra.main.album.AlbumActivity;
+import tra.com.nhaccuatra.main.album.view.AlbumActivity;
 import tra.com.nhaccuatra.main.artists.view.ArtistActivity;
 import tra.com.nhaccuatra.main.playlist.PlayListActivity;
 import tra.com.nhaccuatra.main.songs.view.SongsActivity;
