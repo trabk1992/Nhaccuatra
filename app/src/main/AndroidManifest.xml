@@ -20,7 +20,7 @@
         <activity android:name=".main.songs.view.SongsActivity"></activity>
         <activity android:name=".main.album.AlbumActivity"></activity>
         <activity android:name=".main.playlist.PlayListActivity"></activity>
-        <activity android:name=".main.artists.ArtistActivity"></activity>
+        <activity android:name=".main.artists.view.ArtistActivity"></activity>
     </application>
 
 </manifest>
