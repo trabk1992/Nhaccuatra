@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Nhaccuatra</string>
+
+    <!--Song Playing-->
+    <string name="start_button">Start</string>
+    <string name="stop_button">Stop</string>
+    <!--Song Playing-->
 </resources>
