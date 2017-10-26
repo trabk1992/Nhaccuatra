@@ -7,10 +7,12 @@ package tra.com.nhaccuatra.main.songs.model;
 public class Songs {
     private String songsName;
     private String singerName;
+    private String uri;
 
-    public Songs(String songsName, String singerName) {
+    public Songs(String songsName, String singerName, String uri) {
         this.songsName = songsName;
         this.singerName = singerName;
+        this.uri = uri;
     }
 
     public String getSongsName() {
@@ -27,5 +29,13 @@ public class Songs {
 
     public void setSingerName(String singerName) {
         this.singerName = singerName;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getUri() {
+        return uri;
     }
 }

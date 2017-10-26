@@ -22,7 +22,8 @@ public class SongsModel {
         ArrayList<Songs> songses = new ArrayList<>();
 
         for (int i = 0; i < songList.size(); i++) {
-            Songs song = new Songs(songList.get(i).getSongsName(), songList.get(i).getSingerName());
+            Songs song = new Songs(songList.get(i).getSongsName(), songList.get(i).getSingerName(),
+                    songList.get(i).getUri());
             songses.add(song);
         }
 

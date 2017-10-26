@@ -22,6 +22,7 @@
         <activity android:name=".main.playlist.PlayListActivity"></activity>
         <activity android:name=".main.artists.view.ArtistActivity"></activity>
         <activity android:name=".main.songplaying.view.SongPlayingActivity"></activity>
+        <service android:name=".service.SongService"></service>
     </application>
 
 </manifest>

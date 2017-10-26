@@ -14,6 +14,7 @@ import tra.com.nhaccuatra.main.album.view.AlbumActivity;
 import tra.com.nhaccuatra.main.artists.view.ArtistActivity;
 import tra.com.nhaccuatra.main.playlist.PlayListActivity;
 import tra.com.nhaccuatra.main.songs.view.SongsActivity;
+import tra.com.nhaccuatra.service.SongService;
 
 public class MainActivity extends TabActivity {
 
@@ -36,6 +37,7 @@ public class MainActivity extends TabActivity {
 
         }
         inital();
+        startService(new Intent(getApplicationContext(), SongService.class));
     }
 
     private void inital() {
@@ -81,5 +83,11 @@ public class MainActivity extends TabActivity {
                     finish();
                 }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(getApplicationContext(), SongService.class));
     }
 }

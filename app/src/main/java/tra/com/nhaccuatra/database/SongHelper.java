@@ -40,6 +40,7 @@ public class SongHelper {
             int albumIndex = songsCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
             int singerIndex = songsCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int timeIndex = songsCursor.getColumnIndex(MediaStore.Audio.Media.SIZE);
+            int uriIndex = songsCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
 
             do {
 
@@ -47,8 +48,9 @@ public class SongHelper {
                 String songsAlbum = songsCursor.getString(albumIndex);
                 String singer = songsCursor.getString(singerIndex);
                 String time = songsCursor.getString(timeIndex);
+                String uri = songsCursor.getString(uriIndex);
 
-                Song song = new Song(songsTitle, singer, songsAlbum, time);
+                Song song = new Song(songsTitle, singer, songsAlbum, time, uri);
                 songArrayList.add(song);
 
                 Log.d("tra.nta", " title "+songsTitle);

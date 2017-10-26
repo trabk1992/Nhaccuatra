@@ -10,12 +10,14 @@ public class Song {
     private String singerName;
     private String albumName;
     private String songsTime;
+    private String uri;
 
-    public Song(String songsName, String singerName, String albumName, String songsTime) {
+    public Song(String songsName, String singerName, String albumName, String songsTime, String uri) {
         this.songsName = songsName;
         this.singerName = singerName;
         this.albumName = albumName;
         this.songsTime = songsTime;
+        this.uri = uri;
     }
 
     public String getSongsName() {
@@ -48,5 +50,13 @@ public class Song {
 
     public void setSongsTime(String songsTime) {
         this.songsTime = songsTime;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getUri() {
+        return uri;
     }
 }
