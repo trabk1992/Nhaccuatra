@@ -37,7 +37,7 @@ public class MainActivity extends TabActivity {
 
         }
         inital();
-        startService(new Intent(getApplicationContext(), SongService.class));
+        //startService(new Intent(getApplicationContext(), SongService.class));
     }
 
     private void inital() {
@@ -88,6 +88,6 @@ public class MainActivity extends TabActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(new Intent(getApplicationContext(), SongService.class));
+        //stopService(new Intent(getApplicationContext(), SongService.class));
     }
 }

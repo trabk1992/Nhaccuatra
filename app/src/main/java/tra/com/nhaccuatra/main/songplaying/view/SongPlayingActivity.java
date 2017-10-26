@@ -45,6 +45,7 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        songPlayingPresenterImp.destroyService();
         songPlayingPresenterImp = null;
     }
 

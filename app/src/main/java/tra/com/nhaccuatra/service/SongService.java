@@ -63,6 +63,7 @@ public class SongService extends Service{
     public void createSong() {
         Uri uri = Uri.parse(this.uri);
         mediaPlayer = MediaPlayer.create(this.getApplicationContext(), uri);
+        start();
     }
 
     public void start() {
