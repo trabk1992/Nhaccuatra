@@ -2,16 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/playing_song_title"
         android:layout_width="match_parent"
         android:layout_height="50dp">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/singer_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/pikachu"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#ffcc33"/>
         <TextView
             android:id="@+id/playing_song_name"
             android:layout_width="wrap_content"
@@ -28,41 +32,74 @@
 
     </RelativeLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/playing_song_singer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/playing_song_title"
+        android:layout_above="@+id/playing_song_seekBar"
+        android:src="@drawable/ic_launcher"
+        app:civ_border_width="1dp"
+        app:civ_border_color="#ffcc33"
+        app:paddingStart="2dp"
+        app:paddingEnd="2dp"/>
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/current_time_of_song"
+        android:id="@+id/playing_song_seekBar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/current_time_of_song"
         android:layout_above="@+id/control_layout"
-        android:src="@drawable/ic_launcher"/>
+        android:layout_marginLeft="20dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/whole_song_time"
+        android:layout_above="@id/control_layout"
+        android:layout_below="@id/playing_song_seekBar"
+        android:layout_alignEnd="@+id/playing_song_seekBar"
+        android:layout_marginRight="20dp" />
 
     <LinearLayout
         android:id="@+id/control_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="2dp"
         android:orientation="horizontal">
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/repeate_icon"
+            android:id="@+id/playing_song_repeat_button"
+            android:src="@drawable/repeat"
+            android:background="#00ffffff"
             android:layout_weight="1"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/pause_button"
-            android:src="@drawable/pause_icon"
+            android:src="@drawable/pause"
+            android:background="#00ffffff"
             android:layout_weight="1"/>
         <ImageButton
             android:id="@+id/playing_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/play_icon"/>
+            android:background="#00ffffff"
+            android:src="@drawable/play"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/shuffle_icon"/>
+            android:background="#00ffffff"
+            android:src="@drawable/shuffle"/>
     </LinearLayout>
+
 </RelativeLayout>

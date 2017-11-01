@@ -6,24 +6,35 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Admin on 10/18/2017.
  */
 
-public class SongService extends Service{
+public class SongService extends Service implements MediaPlayer.OnCompletionListener{
 
     private MediaPlayer mediaPlayer;
     private String uri;
     private IBinder binder = new PlayingSongBinder();
+    private ArrayList<TimeChange> listener = new ArrayList<>();
+    private Handler handler = new Handler();
+    private boolean isPause = false;
+    private int finalTime =0;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        //mediaPlayer = new MediaPlayer();
         Toast.makeText(this, "Create service", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -62,16 +73,87 @@ public class SongService extends Service{
 
     public void createSong() {
         Uri uri = Uri.parse(this.uri);
-        mediaPlayer = MediaPlayer.create(this.getApplicationContext(), uri);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+        mediaPlayer.setOnCompletionListener(this);
         start();
+
+    }
+
+    public void registerTimeChange(TimeChange timeChange) {
+        listener.add(timeChange);
+    }
+
+    public void unRegisterTimeChange(TimeChange timeChange) {
+       listener.remove(timeChange);
     }
 
     public void start() {
+        isPause = false;
         mediaPlayer.start();
+        handler.postDelayed(updateSongTime, 1000);
+    }
+
+    public int getFinalTime() {
+        finalTime =   mediaPlayer.getDuration();
+        return finalTime;
+    }
+
+    public int getCurrentTime() {
+        return mediaPlayer.getCurrentPosition();
     }
 
     public void pause() {
+        isPause = true;
         mediaPlayer.pause();
+
+    }
+
+    public void release() {
+        mediaPlayer.release();
+        mediaPlayer = null;
+    }
+
+    public void repeat(boolean isRepeat) {
+        mediaPlayer.setLooping(isRepeat);
+    }
+
+    public void seekTo(int time) {
+        if(mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+            mediaPlayer.seekTo(time);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.start();
+                }
+            },300);
+        }else {
+            mediaPlayer.seekTo(time);
+        }
+
+    }
+
+    private Runnable updateSongTime = new Runnable() {
+        @Override
+        public void run() {
+            if (mediaPlayer != null && !isPause ) {
+                Log.d("tra.nta","getCurrentPosition");
+                int currentTime = mediaPlayer.getCurrentPosition();
+                for (TimeChange o : listener) {
+                    o.dataChange(currentTime);
+                }
+
+                handler.postDelayed(this, 1000);
+            }
+        }
+    };
+
+    @Override
+    public void onCompletion(MediaPlayer mediaPlayer) {
+        isPause = true;
+        for (TimeChange o : listener) {
+            o.OnCompletion();
+        }
     }
 
     public class PlayingSongBinder extends Binder {

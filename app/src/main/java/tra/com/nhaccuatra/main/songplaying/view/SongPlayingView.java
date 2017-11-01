@@ -7,4 +7,8 @@ package tra.com.nhaccuatra.main.songplaying.view;
 public interface SongPlayingView {
 
     void updateViewState(String action);
+    void setFinalTime(String time);
+    void setCurrentTime(String time);
+    void setCurrentPositionOfSeekBar(int positionOfSeekBar);
+    void setMaxValue(int value);
 }
