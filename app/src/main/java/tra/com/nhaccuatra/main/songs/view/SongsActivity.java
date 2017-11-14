@@ -37,9 +37,14 @@ public class SongsActivity extends Activity{
         songsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String uri = songsArrayList.get(i).getUri();
+                Songs song = songsArrayList.get(i);
+                String uri = song.getUri();
+                String singerName = song.getSingerName();
+                String songName = song.getSongsName();
                 Intent intent = new Intent(SongsActivity.this, SongPlayingActivity.class);
                 intent.putExtra("uri", uri);
+                intent.putExtra("singerName", singerName);
+                intent.putExtra("songName", songName);
                 startActivity(intent);
             }
         });

@@ -3,6 +3,7 @@ package tra.com.nhaccuatra.main.songplaying.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,8 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
     private SeekBar timeSeekBar;
     private TextView currentTimeOfSong;
     private TextView wholeSongTime;
+    private TextView songNameText;
+    private TextView singerNameText;
 
     private int currentTime;
     private boolean isRepeat = false;
@@ -46,6 +49,8 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
         timeSeekBar = (SeekBar) findViewById(R.id.playing_song_seekBar);
         currentTimeOfSong = (TextView) findViewById(R.id.current_time_of_song);
         wholeSongTime = (TextView) findViewById(R.id.whole_song_time);
+        songNameText = (TextView) findViewById(R.id.playing_song_name);
+        singerNameText = (TextView) findViewById(R.id.singer_name_text);
         playingButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         repeatButton.setOnClickListener(this);
@@ -53,6 +58,10 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
         initalView();
         intent = getIntent();
         String uri = intent.getStringExtra("uri");
+        String songName = intent.getStringExtra("songName");
+        String singerName = intent.getStringExtra("singerName");
+        singerNameText.setText(singerName);
+        songNameText.setText(songName);
         songPlayingPresenterImp = new SongPlayingPresenterImp(getApplicationContext(), uri, this);
         currentTime = 0;
     }
@@ -103,9 +112,9 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
             pauseButton.setVisibility(View.GONE);
         } else if (action.equals("repeat")) {
             if (isRepeat) {
-                repeatButton.setBackgroundColor(Color.RED);
+                repeatButton.setImageDrawable(getDrawable(R.drawable.repeat));
             } else {
-                repeatButton.setBackgroundColor(Color.parseColor("#00ffffff"));
+                repeatButton.setImageDrawable(getDrawable(R.drawable.non_repeat));
             }
         }
     }
@@ -143,6 +152,5 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         songPlayingPresenterImp.startStopTrackingTouch(currentTime);
-        Toast.makeText(this, currentTime + "", Toast.LENGTH_SHORT).show();
     }
 }
