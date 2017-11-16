@@ -1,10 +1,17 @@
 package tra.com.nhaccuatra.main.songplaying.view;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,6 +21,7 @@ import android.widget.Toast;
 
 import tra.com.nhaccuatra.R;
 import tra.com.nhaccuatra.main.songplaying.presenter.SongPlayingPresenterImp;
+import tra.com.nhaccuatra.service.SongService;
 
 /**
  * Created by Admin on 10/13/2017.
@@ -36,6 +44,19 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
 
     private SongPlayingPresenterImp songPlayingPresenterImp;
     private Intent intent;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String action = intent.getAction();
+            Log.d("tra.nta","action service "+action);
+            if(action.equals("play")) {
+                updateViewState("playing");
+            } else if (action.equals("pause")) {
+                updateViewState("pause");
+            }
+        }
+    };
 
 
     @Override
@@ -69,7 +90,17 @@ public class SongPlayingActivity extends Activity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("play");
+        intentFilter.addAction("pause");
+        registerReceiver(broadcastReceiver, intentFilter);
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(broadcastReceiver);
     }
 
     @Override
